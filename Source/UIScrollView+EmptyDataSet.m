@@ -105,7 +105,7 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 - (BOOL)dzn_canDisplay
 {
     if (self.emptyDataSetSource && [self.emptyDataSetSource conformsToProtocol:@protocol(DZNEmptyDataSetSource)]) {
-        if ([self isKindOfClass:[UITableView class]] || [self isKindOfClass:[UICollectionView class]] || [self isKindOfClass:[UIScrollView class]]) {
+        if ([self isKindOfClass:[UITableView class]] || [self isKindOfClass:[UICollectionView class]] || [self isKindOfClass:[UIScrollView class]] || [NSStringFromClass([self class]) isEqualToString:@"ASCollectionView"]) {
             return YES;
         }
     }
@@ -141,7 +141,7 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
         }
     }
     // UICollectionView support
-    else if ([self isKindOfClass:[UICollectionView class]]) {
+    else if ([self isKindOfClass:[UICollectionView class]] || [NSStringFromClass([self class]) isEqualToString:@"ASCollectionView"]) {
         
         UICollectionView *collectionView = (UICollectionView *)self;
         id <UICollectionViewDataSource> dataSource = collectionView.dataSource;
